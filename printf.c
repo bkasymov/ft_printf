@@ -38,7 +38,10 @@ char		*get_arg_str(t_spec *spec, va_list *vl)
 		!(res = action->to_str(arg)))
 		error = 1;
 	if (action->cleanup_needed)
+	{
 		free(arg);
+		free(res);
+	}
 	return (error || !(res = apply_spec(res, spec)) ? 0 : res);
 }
 
@@ -76,7 +79,6 @@ int			ft_printf(const char *format, ...)
 		format = read_spec(format, &spec);
 		if (!format || !(s = get_arg_str(&spec, &vl)))
 			return (-1);
-		/* Stupid special case with %c and 0 char (which HAS to be printed) */
 		if (spec.stupid_c0_special_case)
 			handle_stupid_c0_special_case(s, spec, &i);
 		else

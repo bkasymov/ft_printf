@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "printf.h"
+#include "fp_type.h"
 
 /*
 **	Return appropritate action according to spec if such exists else 0

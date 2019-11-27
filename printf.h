@@ -119,13 +119,13 @@ char	*w_percent(void *x);
 /*
 **	Argument extractors
 */
-
+/*
 void	*int_extractor(t_spec spec, va_list *vl);
 void	*float_extractor(t_spec spec, va_list *vl);
 void	*char_extractor(t_spec spec, va_list *vl);
 void	*str_extractor(t_spec spec, va_list *vl);
 void	*dummy_extractor(t_spec spec, va_list *vl);
-
+*/
 /*
 **		for read
 */

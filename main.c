@@ -9,7 +9,7 @@ int		main(void)
 	long	int b = 123456789;
 	long long 	c = 12345678912345;
 	char		d = 'c';
-	char		e[] = {"OBRABOTAY MENYA, BISTREE!\nNU ZHE! \nDOLGO!"};
+	char		e[] = {"NORMALNO OBRABOTAY MENYA, BISTREE!\nNU ZHE! \nDOLGO!"};
 	float		f = 12.345678;
 	double		g = 12.345678912345;
 	long double h = 0.8765089426;

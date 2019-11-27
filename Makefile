@@ -12,8 +12,10 @@
 
 NAME = libftprintf.a
 
-SRC := arg_extractors.c \
+SRC := fp_type.h \
 	   conv_other.c \
+	   arg_extractors.c \
+	   arg_extractors2.c \
 	   conv_wrappers_other.c \
 	   find_action.c \
 	   printf.c \

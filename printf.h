@@ -115,6 +115,19 @@ void	*char_extractor(t_spec spec, va_list *vl);
 void	*str_extractor(t_spec spec, va_list *vl);
 void	*dummy_extractor(t_spec spec, va_list *vl);
 
+/*
+**		for read
+*/
+
+const char	*read_spec(const char *format, t_spec *spec);
+const char	*read_length(const char *f, t_spec *spec);
+void		init_spec(t_spec *spec);
+void		read_flag(const char c, t_spec *spec);
+const char	*read_flags(const char *f, t_spec *spec);
+const char	*read_width(const char *f, t_spec *spec);
+const char	*read_precision(const char *f, t_spec *spec);
+const char	*read_conv_spec(const char *f, t_spec *spec);
+
 
 # define ACTIONS {\
 	{"di", &w_itoa_b10, &int_extractor, 1},\

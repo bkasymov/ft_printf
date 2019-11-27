@@ -1,5 +1,4 @@
 #include "printf.h"
-#include "read_spec.h"
 #include "apply_spec.h"
 
 /*
@@ -40,7 +39,6 @@ char		*get_arg_str(t_spec *spec, va_list *vl)
 	if (action->cleanup_needed)
 	{
 		free(arg);
-		free(res);
 	}
 	return (error || !(res = apply_spec(res, spec)) ? 0 : res);
 }

@@ -19,7 +19,7 @@ ft_bbtree_utils.c get_next_line.c ft_itoa_base.c ft_strrev.c
 endef
 
 $(NAME):
-	@echo "\n\n\nC...o...m...p...i...l...i...n...g \n l...i...b...r...a...r...y..."
+	@echo "\n\n		🐅		\n	Please, some minutes, Monsieur!\n\n"
 	@gcc -g -Wall -Wextra -Werror -I includes -c $(SRC) 
 	@ar rc libft.a *.o
 

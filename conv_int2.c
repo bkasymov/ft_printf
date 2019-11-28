@@ -1,18 +1,14 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   conv_int.c                                         :+:      :+:    :+:   */
+/*   conv_int2.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dpenney <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/27 17:01:42 by dpenney           #+#    #+#             */
-/*   Updated: 2019/11/28 10:30:57 by dpenney          ###   ########.fr       */
+/*   Created: 2019/11/28 10:34:01 by dpenney           #+#    #+#             */
+/*   Updated: 2019/11/28 10:34:04 by dpenney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-/*
-**	Here you can find declarations of integer conversion functions
-*/
 
 #include "printf.h"
 #include "libft.h"
@@ -23,18 +19,18 @@
 #define HEX_L	"0123456789abcdef"
 #define HEX_U	"0123456789ABCDEF"
 
-char	*itoa_b10u(long long n)
+
+char	*itoa_b8(long long n)
 {
-	return (ft_itoa_base(n, DECIMAL, 0));
+	return (ft_itoa_base(n, OCTAL, 0));
 }
 
-char	*itoa_b10(long long n)
+char	*itoa_bX(long long n)
 {
-	return (ft_itoa_base(n, DECIMAL, 1));
+	return (ft_itoa_base(n, HEX_U, 0));
 }
 
-char	*itoa_b2(long long n)
+char	*itoa_bx(long long n)
 {
-	return (ft_itoa_base(n, BINARY, 0));
+	return (ft_itoa_base(n, HEX_L, 0));
 }
-

@@ -101,6 +101,7 @@ char	*w_itoa_x(void *n);
 */
 
 char	*ftoa(long double x);
+int		ft_inter_len(long long inter);
 char	*ctoa(char c);
 char	*stoa(char *s);
 char	*ptoa(void *p);

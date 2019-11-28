@@ -6,7 +6,7 @@
 /*   By: dpenney <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/27 16:14:17 by dpenney           #+#    #+#             */
-/*   Updated: 2019/11/27 16:14:26 by dpenney          ###   ########.fr       */
+/*   Updated: 2019/11/28 11:12:13 by dpenney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,7 @@ char	*apply_spec(char *s, t_spec *spec)
 {
 	char	*new;
 
-	if (\
-		!(new = ft_strdup(s)) ||\
+	if (!(new = ft_strdup(s)) ||\
 		!(new = apply_precision(new, *spec)) ||\
 		!(new = apply_numeric_flags(new, *spec)) ||\
 		!(new = apply_width(new, *spec)) \

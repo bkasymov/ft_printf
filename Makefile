@@ -6,7 +6,7 @@
 #    By: dpenney <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/24 14:21:35 by dpenney           #+#    #+#              #
-#    Updated: 2019/11/27 18:35:39 by dpenney          ###   ########.fr        #
+#    Updated: 2019/11/28 11:41:03 by dpenney          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,12 +23,15 @@ SRC := fp_type.h \
 	   read_spec_util.c \
 	   printf.h	\
 	   conv_int.c \
-	   conv_wrappers_int.c\
+	   conv_int2.c \
+	   conv_wrappers_int.c \
+	   conv_wrappers_int2.c \
 	   apply_spec.c \
 	   apply_spec_util.c \
 	   apply_spec_util2.c \
 	   apply_spec_util3.c \
 	   apply_spec_util4.c \
+	   int_len.c \
 	   ftoa.c \
 
 OBJ = $(SRC:.c = o)
@@ -40,7 +43,7 @@ $(NAME):
 	@gcc -g $(SRC) -Wall -Wextra -c -I . -I libft/includes -L ./libft -lft  -DMAC_OS
 	@ar rc libftprintf.a *.o ./libft/*.o
 	@ranlib $(NAME)
-	@echo "\n\n\nIt's done! Use it  ( ͡° ͜ʖ ͡°( ͡❛ ͜ʖ ͡❛)  \n\n\n"
+	@echo "\n\n\n	It's done! Use it  ( • )( • ) ԅ(‾⌣‾ԅ)  \n\n\n"
 
 clean:
 	@rm -f *.o

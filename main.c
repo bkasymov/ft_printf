@@ -6,7 +6,7 @@
 /*   By: dpenney <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/28 10:19:41 by dpenney           #+#    #+#             */
-/*   Updated: 2019/11/28 10:28:32 by dpenney          ###   ########.fr       */
+/*   Updated: 2019/11/28 13:31:14 by dpenney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int main(void)
 	double		g = 12.345678912345;
 	long double h = 0.8765089426;
 
-	printf("\n%d, %ld, %lld, %c, %s, %f, %f, %Lf\n", a, b, c, d, e, f, g, h);
-	ft_printf("\n\n\n%d, %ld, %lld, %c, %s, %f, %f, %Lf\n", a, b, c, d, e, f, g, h);
+//	printf("\n%d, %ld, %lld, %c, %s, %f, %f, %Lf\n", a, b, c, d, e, f, g, h);
+	ft_printf("SEX PEX\n\n\n%d, %ld, %lld, %c, %s, %f, %f, %Lf\n", a, b, c, d, e, f, g, h);
 	return (0);
 }

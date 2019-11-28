@@ -6,7 +6,7 @@
 #    By: dpenney <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/24 14:21:35 by dpenney           #+#    #+#              #
-#    Updated: 2019/11/28 11:41:03 by dpenney          ###   ########.fr        #
+#    Updated: 2019/11/28 13:31:34 by dpenney          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,6 +33,7 @@ SRC := fp_type.h \
 	   apply_spec_util4.c \
 	   int_len.c \
 	   ftoa.c \
+	   main.c
 
 OBJ = $(SRC:.c = o)
 
@@ -40,7 +41,7 @@ all: $(NAME)
 
 $(NAME):
 	@make -C libft
-	@gcc -g $(SRC) -Wall -Wextra -c -I . -I libft/includes -L ./libft -lft  -DMAC_OS
+	@gcc -g $(SRC) -Wall -Wextra  -I . -I libft/includes -L ./libft -lft  -DMAC_OS
 	@ar rc libftprintf.a *.o ./libft/*.o
 	@ranlib $(NAME)
 	@echo "\n\n\n	It's done! Use it  ( • )( • ) ԅ(‾⌣‾ԅ)  \n\n\n"

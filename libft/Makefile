@@ -1,4 +1,3 @@
-
 NAME = libft.a
 
 define SRC 

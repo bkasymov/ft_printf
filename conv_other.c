@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   conv_other.c                                       :+:      :+:    :+:   */
+/*   apply_spec.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dpenney <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/27 17:01:57 by dpenney           #+#    #+#             */
-/*   Updated: 2019/11/27 17:01:59 by dpenney          ###   ########.fr       */
+/*   Created: 2019/11/29 14:55:09 by dpenney           #+#    #+#             */
+/*   Updated: 2019/11/29 14:55:10 by dpenney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,15 +42,15 @@ char	*stoa(char *s)
 }
 
 /*
-** Rerurn string representation of void ptr as hex 
+** Rerurn string representation of void ptr as hex
 */
 
 char	*ptoa(void *p)
 {
-	return (itoa_bx(*(int *)p));
+	return (itoa_bx(*(long long *)p));
 }
 
-char	*percent_to_a()
+char	*percent_to_a(void)
 {
 	return (ft_strdup("%"));
 }

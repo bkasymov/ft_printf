@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   conv_wrappers_int2.c                               :+:      :+:    :+:   */
+/*   apply_spec.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dpenney <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/28 11:34:06 by dpenney           #+#    #+#             */
-/*   Updated: 2019/11/28 11:34:06 by dpenney          ###   ########.fr       */
+/*   Created: 2019/11/29 14:55:09 by dpenney           #+#    #+#             */
+/*   Updated: 2019/11/29 14:55:10 by dpenney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ char	*w_itoa_b8(void *n)
 	return (itoa_b8(*(long long *)n));
 }
 
-char	*w_itoa_X(void *n)
+char	*w_itoa_xx(void *n)
 {
-	return (itoa_bX(*(long long *)n));
+	return (itoa_bxx(*(long long *)n));
 }
 
 char	*w_itoa_x(void *n)

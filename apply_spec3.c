@@ -1,17 +1,55 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   apply_spec_util4.c                                 :+:      :+:    :+:   */
+/*   apply_spec.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dpenney <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/27 17:00:50 by dpenney           #+#    #+#             */
-/*   Updated: 2019/11/27 17:00:51 by dpenney          ###   ########.fr       */
+/*   Created: 2019/11/29 14:55:09 by dpenney           #+#    #+#             */
+/*   Updated: 2019/11/29 14:55:10 by dpenney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
 #include "apply_spec.h"
+
+char	*apply_plus(char *s, t_spec spec)
+{
+	if (spec.flag_plus != 1)
+		return (s);
+	if (is_signed_conversion(spec) && s[0] != '-')
+		return (add_prefix(s, "+")); 
+	// Man page says sign should always be + or -. How about 0??
+	return (s);
+}
+
+char	*apply_space(char *s, t_spec spec)
+{
+	if (spec.flag_space != 1 || spec.flag_plus == 1)
+		return (s);
+	if (is_signed_conversion(spec) && s[0] != '-' )
+		return (add_prefix(s, " ")); 
+	// Man page says prefix should be added only for POSITIVE numbers
+	// We reproduce bug and consider 0 as positive number
+	return (s);
+}
+
+/*
+**  "+" " " "#"
+*/
+
+char	*apply_numeric_flags(char *s, t_spec spec)
+{
+	if (spec.conv == 'p')
+		return ((s = apply_hash(s, spec)));
+	if (is_numeric(spec) &&\
+		(s = apply_hash(s, spec)) &&\
+		(s = apply_plus(s, spec)) &&\
+		(s = apply_space(s, spec))\
+	   )
+		return (s);
+	return (s);
+}
 
 /*
 **	Return number of chars in string after dot
@@ -37,7 +75,7 @@ char	*round_float(char *s, int precision)
 
 	carry_bit = 0;
 	digit = ft_strchr(s, '.') + precision + 1;
-	if (*digit >= '5' || (*digit == '4' && (*digit - 1) >= '5'))
+	if (*digit >= '5')
 		carry_bit++;
 	*digit = 0;
 	while (carry_bit && digit != s)

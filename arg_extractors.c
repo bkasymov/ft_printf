@@ -1,67 +1,75 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   arg_extractors.c                                   :+:      :+:    :+:   */
+/*   apply_spec.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dpenney <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/27 17:01:09 by dpenney           #+#    #+#             */
-/*   Updated: 2019/11/27 17:01:11 by dpenney          ###   ########.fr       */
+/*   Created: 2019/11/29 14:55:09 by dpenney           #+#    #+#             */
+/*   Updated: 2019/11/29 14:55:10 by dpenney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
 #include "fp_type.h"
 
-int		is_usgn(t_spec spec)
+/*
+**	If we understand rules of C language correctly, :-) this conversions
+**  do not lead to data corruption.
+**	Now we may have UB (signed overflow).
+*/
+
+void	*int_extractor(t_spec spec, va_list *vl)
 {
-	if (\
-			spec.conv == 'u' ||\
-			spec.conv == 'o' ||\
-			spec.conv == 'x' ||\
-			spec.conv == 'X'\
-		)
-		return (1);
-	return (0);
+	long long	*p;
+
+	if ((p = ft_memalloc(sizeof(long long))))
+		return (choose_i_extr(spec)(spec, vl, p));
+	return ((void *)p);
 }
 
-void	*extr_sint(t_spec spec, va_list *vl, long long *p)
+void	*float_extractor(t_spec spec, va_list *vl)
 {
-		if (spec.length == ll)
-			*p += va_arg(*vl, long long);
-		else if (spec.length == l)
-			*p += va_arg(*vl, long);
+	long double	*p;
+
+	if ((p = ft_memalloc(sizeof(long double))))
+	{
+		if (spec.length == ll || spec.length == l || spec.length == L)
+			*p += va_arg(*vl, long double);
 		else
-			*p += va_arg(*vl, int);
-		return ((void *)p);
+			*p += va_arg(*vl, double);
+	}
+	return ((void *)p);
 }
 
-void	*extr_uint(t_spec spec, va_list *vl, long long *p)
+void	*char_extractor(t_spec spec, va_list *vl)
 {
-		if (spec.length == ll)
-			*p += va_arg(*vl, unsigned long long);
-		else if (spec.length == l)
-			*p += va_arg(*vl, unsigned long);
-		else
-			*p += va_arg(*vl, unsigned int);
-		return ((void *)p);
+	char	*p;
+
+	(void)spec;
+	if ((p = ft_memalloc(sizeof(char) * 2)))
+	{
+		p[0] = va_arg(*vl, int);
+		p[1] = 0;
+	}
+	return ((void *)p);
 }
 
 /*
 **  Single case where we do not allocate external memory
+**	UB reproduction (small precision and NULL str)
 */
 
 void	*str_extractor(t_spec spec, va_list *vl)
 {
 	char *arg;
 
-	arg = va_arg(*vl, char *);	
+	arg = va_arg(*vl, char *);
 	#ifdef MAC_OS
 	(void)spec;
 	#endif
 
 	#ifndef MAC_OS
-	// UB reproduction (small precision and NULL str)
 	if (!arg && spec.precision > 0 && spec.precision < 6)
 		arg = "";
 	#endif
@@ -75,7 +83,7 @@ void	*str_extractor(t_spec spec, va_list *vl)
 **  Will be used for % conv specifier
 */
 
-/* 
+/*
 ** Probably, this can break portability to clang.
 ** Use void() typecasting then (void)spec
 ** Return value is nonzero and must not be used

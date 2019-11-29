@@ -1,5 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   apply_spec.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dpenney <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/11/29 14:55:09 by dpenney           #+#    #+#             */
+/*   Updated: 2019/11/29 14:55:10 by dpenney          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "printf.h"
 #include "apply_spec.h"
+
+/*
+** 	here dot is always in number if this function is called
+*/
 
 char	*float_precision(char *s, t_spec spec)
 {
@@ -15,19 +31,23 @@ char	*float_precision(char *s, t_spec spec)
 			!(s = add_suffix(s, ".")))
 			return (0);
 		suffix = char_n_dup('0', precision - nchar_after_dot);
-		return(add_suffix(s, suffix));
+		return (add_suffix(s, suffix));
 	}
 	if (precision < nchar_after_dot)
 		s = round_float(s, precision);
-	
 	if (precision == 0 && spec.flag_hash)
 		s = add_suffix(s, ".");
-	//here dot is always in number if this function is called
 	return (s);
 }
+
 /*
 **	< 0 => uninitialized
 **	for floats default is 6
+*/
+
+/*
+**	Insert zeros from the left to nonfloat numeric (after - if negative)
+**	PRINT NOTHING IN THAT CASE
 */
 
 char	*apply_precision(char *s, t_spec spec)
@@ -40,7 +60,7 @@ char	*apply_precision(char *s, t_spec spec)
 		free(s);
 		s = ft_strdup("(nil)");
 	}
-	#endif
+#endif
 	if (spec.precision < 0 && spec.conv == 'f')
 		spec.precision = DEFAULT_FLOAT_PRECISION;
 	if (spec.precision < 0)
@@ -52,10 +72,8 @@ char	*apply_precision(char *s, t_spec spec)
 	}
 	if (spec.conv == 'f')
 		return (float_precision(s, spec));
-	/* PRINT NOTHING IN THAT CASE */
 	if (spec.precision == 0 && !ft_strcmp(s, "0"))
 		return (str_replace(s, '0', 0));
-	/* Insert zeros from the left to nonfloat numeric (after - if negative) */
 	if (spec.precision > 0 && is_nonfloat_numeric(spec))
 	{
 		zeros = char_n_dup('0', spec.precision - ft_strlen(s) + (*s == '-'));

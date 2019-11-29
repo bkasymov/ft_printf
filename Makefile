@@ -5,43 +5,45 @@
 #                                                     +:+ +:+         +:+      #
 #    By: dpenney <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2019/11/24 14:21:35 by dpenney           #+#    #+#              #
-#    Updated: 2019/11/28 13:31:34 by dpenney          ###   ########.fr        #
+#    Created: 2019/11/29 14:53:58 by dpenney           #+#    #+#              #
+#    Updated: 2019/11/29 14:54:00 by dpenney          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libftprintf.a
 
-SRC := fp_type.h \
-	   conv_other.c \
-	   arg_extractors.c \
+SRC := arg_extractors.c \
 	   arg_extractors2.c \
+	   conv_other.c \
 	   conv_wrappers_other.c \
 	   find_action.c \
 	   printf.c \
-	   read_spec.c  \
-	   read_spec_util.c \
+	   read_spec.c \
+	   read_spec2.c \
 	   printf.h	\
+	   read_spec.h \
 	   conv_int.c \
 	   conv_int2.c \
 	   conv_wrappers_int.c \
 	   conv_wrappers_int2.c \
 	   apply_spec.c \
-	   apply_spec_util.c \
-	   apply_spec_util2.c \
-	   apply_spec_util3.c \
-	   apply_spec_util4.c \
-	   int_len.c \
+	   apply_spec2.c \
+	   apply_spec3.c \
+	   apply_spec4.c \
+	   apply_spec5.c \
 	   ftoa.c \
-	   main.c
+	   int_len.c
 
 OBJ = $(SRC:.c = o)
 
 all: $(NAME)
 
+#если необходимо проверить через собственный main, то следует
+#добавить -L ./libft
+
 $(NAME):
 	@make -C libft
-	@gcc -g $(SRC) -Wall -Wextra  -I . -I libft/includes -L ./libft -lft  -DMAC_OS
+	@gcc -g $(SRC) -Wall -Wextra  -c -I . -I libft/includes -lft  -DMAC_OS
 	@ar rc libftprintf.a *.o ./libft/*.o
 	@ranlib $(NAME)
 	@echo "\n\n\n	It's done! Use it  ( • )( • ) ԅ(‾⌣‾ԅ)  \n\n\n"
